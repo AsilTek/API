@@ -3,11 +3,14 @@ package utilities;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
+import org.json.JSONObject;
 import org.junit.Assert;
 
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
+import static utilities.BaseUrl.createBooking;
+import static utilities.BaseUrl.createBookingUrl;
 
 public class ApiCalls {
 
@@ -93,7 +96,6 @@ public class ApiCalls {
                 .get(BaseUrl.herokuappUserId(id));
 
 
-
         response
                 .then()
                 .assertThat()
@@ -153,10 +155,98 @@ public class ApiCalls {
         Assert.assertEquals(expectedData.get("totalprice"), actualData.get("totalprice"));
         Assert.assertEquals(expectedData.get("depositpaid"), actualData.get("depositpaid"));
         Assert.assertEquals(expectedData.get("firstname"), actualData.get("firstname"));
-        // Assert.assertEquals(expectedData.get("additionalneeds"),actualData.get("additionalneeds"));
         Assert.assertEquals(expectedData.get("checkin"), actualData.get("checkin"));
         Assert.assertEquals(expectedData.get("checkout"), actualData.get("checkout"));
 
         return response;
     }
+
+
+    public static Response serializationBooking(int id,
+                                                int statuscode,
+                                                String firstname,
+                                                String lastname,
+                                                int totalprice,
+                                                boolean depositpaid,
+                                                String checkin,
+                                                String checkout) {
+
+
+        JSONObject expectedData = new JSONObject();
+        JSONObject bookingdates = new JSONObject();
+
+        bookingdates.put("checkin", checkin);
+        bookingdates.put("checkout", checkout);
+        expectedData.put("firstname", firstname);
+        expectedData.put("lastname", lastname);
+        expectedData.put("totalprice", totalprice);
+        expectedData.put("depositpaid", depositpaid);
+        expectedData.put("bookingdates", bookingdates);
+
+        Response response = given()
+                .when()
+                .get(BaseUrl.herokuappUserId(id));
+
+        JSONObject actualData = new JSONObject(response.getBody().asString());
+
+        response.then().statusCode(200);
+
+        Assert.assertEquals(expectedData.getString("firstname"), actualData.getString("firstname"));
+        Assert.assertEquals(expectedData.getString("lastname"), actualData.getString("lastname"));
+        Assert.assertEquals(expectedData.getInt("totalprice"), actualData.getInt("totalprice"));
+        Assert.assertEquals(expectedData.getBoolean("depositpaid"), actualData.getBoolean("depositpaid"));
+
+        JSONObject expectedbookingdates = expectedData.getJSONObject("bookingdates");
+
+
+        JSONObject actualbookingdates = actualData.getJSONObject("bookingdates");
+
+        Assert.assertEquals(expectedbookingdates.getString("checkin"), actualbookingdates.getString("checkin"));
+        Assert.assertEquals(expectedbookingdates.getString("checkout"), actualbookingdates.getString("checkout"));
+
+        return response;
+    }
+
+    public static Response createBookingData(int statuscode,String firstname,
+                                             String lastname,double totalprice, boolean depositpaid,String additionaneeds,
+                                             String checkin, String checkout){
+
+        // we create a dynamic map
+        JSONObject bookingdates = new JSONObject();
+        bookingdates.put("checkin",checkin);
+        bookingdates.put("checkout",checkout);
+
+        JSONObject expectedData = new JSONObject();
+        expectedData.put("firstname", firstname) ;
+        expectedData.put("lastname", lastname) ;
+        expectedData.put("totalprice",totalprice) ;
+        expectedData.put("depositpaid", depositpaid) ;
+        expectedData.put("additionalneeds",additionaneeds ) ;
+        expectedData.put("bookingdates", bookingdates) ;
+        // We used username and password
+        Response response = given()
+                .contentType("application/json; Charset=utf-8")
+                .auth()
+                .basic("admin","password123")
+                .body(expectedData.toString())// if we are using JSONObject we should add .toString()
+                .when()
+                .post(createBookingUrl());
+        response.prettyPrint();
+        response.then()
+                .assertThat()
+                .statusCode(statuscode);
+
+        // Verify the created data
+        JsonPath actualData = response.jsonPath();
+        Assert.assertEquals(expectedData.getString("firstname"),actualData.getString("booking.firstname"));
+        Assert.assertEquals(expectedData.getString("lastname"),actualData.getString("booking.lastname"));
+        Assert.assertEquals(expectedData.getInt("totalprice"),actualData.getInt("booking.totalprice"));
+        Assert.assertEquals(expectedData.getBoolean("depositpaid"),actualData.getBoolean("booking.depositpaid"));
+
+        Assert.assertEquals(expectedData.getJSONObject("bookingdates").getString("checkin"),actualData.getString("booking.bookingdates.checkin"));
+        Assert.assertEquals(expectedData.getJSONObject("bookingdates").getString("checkout"),actualData.getString("booking.bookingdates.checkout"));
+        return response;
+    }
+
+
 }

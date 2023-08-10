@@ -17,4 +17,13 @@ public class BaseUrl {
 
         return " https://restful-booker.herokuapp.com/booking/"+id;
     }
+    public static String createBookingUrl() {
+
+        return "https://restful-booker.herokuapp.com/booking";
+    }
+
+    public static String createBooking() {
+        String url = "https://restful-booker.herokuapp.com/booking";
+        return url;
+    }
 }

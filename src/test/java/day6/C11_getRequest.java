@@ -32,7 +32,7 @@ public class C11_getRequest {
                 .when()
                 .get(BaseUrl.herokuappUserId(140));
 
-        HashMap<String,Object> actualData = response.as(HashMap.class); // De-serialization is here
+        HashMap<String,Object> actualData = response.as(HashMap.class); // De-serialization is here jSon to java
 
         // Assertion
 
