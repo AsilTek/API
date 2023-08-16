@@ -29,12 +29,13 @@ public class S07_JUnitAssert {
 
         JsonPath responseJP = response.jsonPath(); //gelen responsu yorumlamak icin JsonPath e cevirmek zorundayiz
 
-        //EqualTo da direk value yaziyoduk. Get ile key yaziyoruz value geliyor
+        /* Matchers ile neden yapmiyoruz? Exp datayi biliyorsak yapilabilir ama daha sonradan degisebilir,
+           o yuzden daha dynamic yapiyoruz.
+           EqualTo da direk value yaziyoduk. Get ile key yaziyoruz value geliyor*/
+
         Assert.assertEquals(expData.get("userId"),responseJP.get("userId"));
         Assert.assertEquals(expData.get("id"),responseJP.get("id"));
         Assert.assertEquals(expData.get("title"),responseJP.get("title"));
-
-
 
 
     }
