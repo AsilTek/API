@@ -26,7 +26,5 @@ public class S06_GetRequestWithJsonPath {
                                     .body("data.id", hasSize(24),
                                             "data.employee_name",hasItem("Ashton Cox"),
                                             "data.employee_age",hasItems(61,30,40));
-
-
     }
 }
