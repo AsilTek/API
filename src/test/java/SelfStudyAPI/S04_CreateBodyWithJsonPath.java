@@ -55,8 +55,7 @@ public class S04_CreateBodyWithJsonPath {
         genel.put("address",addressInside);
         genel.put("phoneNumbers",phoneNumbers);
 
-
-        //Yazdirirken getJSONObject kullanarak cagiriyoruz. Assert ile bu okje yazilmaz.
+        //Yazdirirken getJSONObject kullanarak cagiriyoruz. Assert ile bu obje yazilmaz.
         System.out.println("firstname = "+ genel.get("firstName"));
         System.out.println("address = "+genel.getJSONObject("address").get("streetAddress"));
         System.out.println("work phone = "+genel.getJSONArray("phoneNumbers").getJSONObject(0).get("type"));

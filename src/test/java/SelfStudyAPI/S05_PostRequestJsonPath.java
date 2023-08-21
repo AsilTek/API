@@ -30,7 +30,7 @@ public class S05_PostRequestJsonPath {
 
         String url = "https://restful-booker.herokuapp.com/booking/";
 
-        //JSON object i ile create(post) ettigimiz body'i burada kaydediyoruz
+        //JSON object ile create(post) ettigimiz body'i burada kaydediyoruz
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
@@ -43,7 +43,7 @@ public class S05_PostRequestJsonPath {
                                     .statusCode(200)
                                     .contentType("application/json; charset=utf-8")
                                     .body("booking.firstname",Matchers.equalTo("Ali"),
-                                            "booking.bookingdates.checkin",Matchers.equalTo("2021-06-01"));
+                                    "booking.bookingdates.checkin",Matchers.equalTo("2021-06-01"));
 
     }
 

@@ -40,6 +40,7 @@ public class S01_PutRequestandTestResponse {
     //Assertion response temel bilgilerini test ediyoruz.
         response
                 .then()
+                .assertThat()
                 .statusCode(200)
                 .contentType("application/json; charset=utf-8")
                 .header("Server","cloudflare")

@@ -25,7 +25,7 @@ public class S03_PostBodyAssertWithMatchers {
         //response objesi olusturarak response'u buraya kaydediyoruz.
         //ve hazirladigimiz body'i gonderiyoruz.
         Response response = given()
-                .contentType(ContentType.JSON)
+                .contentType(ContentType.JSON) // we have to mention the format of the body we created
                 .when()
                 .body(jsonObject.toString()) //her ne kadar body JSON ile olusturulmus olsa da,java ile calisiyor.
                 .post(url);

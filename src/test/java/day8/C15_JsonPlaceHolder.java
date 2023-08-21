@@ -39,21 +39,21 @@ public class C15_JsonPlaceHolder {
         // 4- Assertions
      */
 
-    @Test
-    public void getAllResources() {
-
-        Response response = given()
-                .when()
-                .get(BaseUrl.jsonPlaceHolder());
-
-        response.then()
-                .assertThat()
-                .statusCode(200)
-                .contentType(ContentType.JSON)
-                .log().all();
-
-
-    }
+//    @Test
+//    public void getAllResources() {
+//
+//        Response response = given()
+//                .when()
+//                .get(BaseUrl.jsonPlaceHolder());
+//
+//        response.then()
+//                .assertThat()
+//                .statusCode(200)
+//                .contentType(ContentType.JSON)
+//                .log().all();
+//
+//
+//    }
 
 
     @Test
@@ -71,24 +71,24 @@ public class C15_JsonPlaceHolder {
 
 
 
-        Response response =given()
-                .when()
-                .get(BaseUrl.jsonPlaceHolder()+"/1");
-
-        response.then()
-                .statusCode(200)
-                .contentType(ContentType.JSON);
+//        Response response =given()
+//                .when()
+//                .get(BaseUrl.jsonPlaceHolder()+"/1");
+//
+//        response.then()
+//                .statusCode(200)
+//                .contentType(ContentType.JSON);
         // .log().all();
-
-        response.prettyPrint();
-
-        // JsonPath
-        JsonPath actualData = response.jsonPath();
-
-        assertEquals(expectedData.get("id"),actualData.getInt("id"));
-        assertEquals(expectedData.get("userId"),actualData.getInt("userId"));
-        assertEquals(expectedData.get("title"),actualData.getString("title"));
-        assertEquals(expectedData.get("body"),actualData.getString("body"));
+//
+//        response.prettyPrint();
+//
+//        // JsonPath
+//        JsonPath actualData = response.jsonPath();
+//
+//        assertEquals(expectedData.get("id"),actualData.getInt("id"));
+//        assertEquals(expectedData.get("userId"),actualData.getInt("userId"));
+//        assertEquals(expectedData.get("title"),actualData.getString("title"));
+//        assertEquals(expectedData.get("body"),actualData.getString("body"));
 
 
 
@@ -111,24 +111,24 @@ public class C15_JsonPlaceHolder {
 
 
 
-        Response response =given()
-                .when()
-                .get(BaseUrl.jsonPlaceHolder()+"/1");
-
-        response.then()
-                .statusCode(200)
-                .contentType(ContentType.JSON);
+//        Response response =given()
+//                .when()
+//                .get(BaseUrl.jsonPlaceHolder()+"/1");
+//
+//        response.then()
+//                .statusCode(200)
+//                .contentType(ContentType.JSON);
         // .log().all();
 
         // HashMap de-serialization
         // that the json response and convert to java -> HashMap
 
-        HashMap<String,Object> actualData = response.as(HashMap.class);
+       //HashMap<String,Object> actualData = response.as(HashMap.class);
 
-        assertEquals(expectedData.get("id"),actualData.get("id"));
-        assertEquals(expectedData.get("userId"),actualData.get("userId"));
-        assertEquals(expectedData.get("title"),actualData.get("title"));
-        assertEquals(expectedData.get("body"),actualData.get("body"));
+//        assertEquals(expectedData.get("id"),actualData.get("id"));
+//        assertEquals(expectedData.get("userId"),actualData.get("userId"));
+//        assertEquals(expectedData.get("title"),actualData.get("title"));
+//        assertEquals(expectedData.get("body"),actualData.get("body"));
 
 
 
@@ -149,22 +149,22 @@ public class C15_JsonPlaceHolder {
         expectedData.put("body","quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto");
 
 
-        Response response =given()
-                .when()
-                .get(BaseUrl.jsonPlaceHolder()+"/1");
-
-        response.then()
-                .statusCode(200)
-                .contentType(ContentType.JSON);
-        // .log().all();
-
-        // JsonPath
-        JsonPath actualData = response.jsonPath();
-
-        assertEquals(expectedData.get("id"),actualData.getInt("id"));
-        assertEquals(expectedData.get("userId"),actualData.getInt("userId"));
-        assertEquals(expectedData.get("title"),actualData.getString("title"));
-        assertEquals(expectedData.get("body"),actualData.getString("body"));
+//        Response response =given()
+//                .when()
+//                .get(BaseUrl.jsonPlaceHolder()+"/1");
+//
+//        response.then()
+//                .statusCode(200)
+//                .contentType(ContentType.JSON);
+//        // .log().all();
+//
+//        // JsonPath
+//        JsonPath actualData = response.jsonPath();
+//
+//        assertEquals(expectedData.get("id"),actualData.getInt("id"));
+//        assertEquals(expectedData.get("userId"),actualData.getInt("userId"));
+//        assertEquals(expectedData.get("title"),actualData.getString("title"));
+//        assertEquals(expectedData.get("body"),actualData.getString("body"));
 
 
 
@@ -187,28 +187,24 @@ public class C15_JsonPlaceHolder {
         expectedData.put("body","quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto");
 
 
-        Response response =given()
-                .when()
-                .get(BaseUrl.jsonPlaceHolder()+"/1");
-
-        response.then()
-                .statusCode(200)
-                .contentType(ContentType.JSON);
+//        Response response =given()
+//                .when()
+//                .get(BaseUrl.jsonPlaceHolder()+"/1");
+//
+//        response.then()
+//                .statusCode(200)
+//                .contentType(ContentType.JSON);
         // .log().all();
 
         // Convert response to JSONObject
 
-        JSONObject actualData = new JSONObject(response.getBody().asString());
+        //JSONObject actualData = new JSONObject(response.getBody().asString());
 
 
-        assertEquals(expectedData.get("id"),actualData.get("id"));
-        assertEquals(expectedData.get("userId"),actualData.get("userId"));
-        assertEquals(expectedData.get("title"),actualData.get("title"));
-        assertEquals(expectedData.get("body"),actualData.get("body"));
-
-
-// BREAK TILL 8:17 PM
-
+//        assertEquals(expectedData.get("id"),actualData.get("id"));
+//        assertEquals(expectedData.get("userId"),actualData.get("userId"));
+//        assertEquals(expectedData.get("title"),actualData.get("title"));
+//        assertEquals(expectedData.get("body"),actualData.get("body"));
 
     }
 

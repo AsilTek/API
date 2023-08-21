@@ -31,11 +31,13 @@ public class S12GetWithSpecHerokuapp extends SelfStudy_HerokuappBaseUrl {
 //olan rezervasyonu oldughunu test edecek bir GET request gonderdigimizde, donen response un status code 200 ve Eric ismine
 //ait en az bir booking oldugunu test edin.
 
+    specHerokuapp.pathParam("pp1","booking").queryParam("firstname","Eric");
 
-    }
+    Response response = given().spec(specHerokuapp).when().get("/{pp1}");
 
-    @Test
-    public void test03(){
+    //postmanda kontrol ettik birden fazla oldugunu gorduk. greaterThan dogru degil cunku bookingid karsisindaki
+    //degeri verir kac tane bookingid oldugunu vermez.
+    response.then().assertThat().statusCode(200).body("bookingid",Matchers.greaterThan(1));
 
     }
 }
