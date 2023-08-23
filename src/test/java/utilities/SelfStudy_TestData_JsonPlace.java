@@ -4,8 +4,12 @@ import org.json.JSONObject;
 
 public class SelfStudy_TestData_JsonPlace {
 
+    public int statusCode = 200;
+    public String contentType = "application/json; charset=utf-8";
+    public String header = "keep-alive";
 
-    public JSONObject expectedDataCreation(){
+    //S13 icin
+    public JSONObject expectedDataCreation13(){
 
         JSONObject expData = new JSONObject();
         expData.put("userId",3);
@@ -15,5 +19,31 @@ public class SelfStudy_TestData_JsonPlace {
 
         return expData;
     }
+
+    //S14 icin exp data
+    public JSONObject expectedDataCreation14(){
+
+        JSONObject expData = new JSONObject();
+        expData.put("title","Ahmet");
+        expData.put("body","Merhaba");
+        expData.put("userId",10);
+        expData.put("id",70);
+
+        return expData;
+    }
+
+    //S14 icin request body
+    public JSONObject requestBodyCreation14(){
+
+        JSONObject reqBody = new JSONObject();
+        reqBody.put("title","Ahmet");
+        reqBody.put("body","Merhaba");
+        reqBody.put("userId",10);
+        reqBody.put("id",70);
+
+        return reqBody;
+    }
+
+
 
 }

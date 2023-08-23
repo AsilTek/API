@@ -1,13 +1,16 @@
 package SelfStudyAPI;
 
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
+import org.junit.Assert;
 import org.junit.Test;
 import utilities.SelfStudy_JsonPlaceHolderBaseUrl;
+import utilities.SelfStudy_TestData_JsonPlace;
 
 import static io.restassured.RestAssured.given;
 
-public class S13_ extends SelfStudy_JsonPlaceHolderBaseUrl {
+public class S13_UsingTestData extends SelfStudy_JsonPlaceHolderBaseUrl {
 
     /*
     // "https://jsonplaceholder.typicode.com/posts/22" endpointine bit GET request gonderdigimizde
@@ -27,11 +30,21 @@ public class S13_ extends SelfStudy_JsonPlaceHolderBaseUrl {
         specJsonPlace.pathParams("pp1","posts","pp2",22);
 
         //2- expected data hazirla
+        SelfStudy_TestData_JsonPlace self = new SelfStudy_TestData_JsonPlace();
+        JSONObject expData = self.expectedDataCreation13();
+
+
+        //3- Response object olustur
+        Response response = given().spec(specJsonPlace).when().get("/{pp1}/{pp2}");
+
+        //4- Assertion
+
+        JsonPath resBodyJP = response.jsonPath();
+
+        Assert.assertEquals(expData.get("userId"),resBodyJP.get("userId"));
+        Assert.assertEquals(expData.get("id"),resBodyJP.get("id"));
+        Assert.assertEquals(expData.get("title"),resBodyJP.get("title"));
+        Assert.assertEquals(expData.get("body"),resBodyJP.get("body"));
 
     }
-
-
-
-
-
 }
