@@ -2,6 +2,9 @@ package utilities;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SelfStudy_TestData_JsonPlace {
 
     public int statusCode = 200;
@@ -44,6 +47,26 @@ public class SelfStudy_TestData_JsonPlace {
         return reqBody;
     }
 
+    //S15 icin
+    public HashMap mapRequestBodyCreation(){
+        /*
+        {
+            "title" : "Ahmet",
+            "body" : "Merhaba",
+            "userId" : 10;
+            "id" : 70
+
+            Map de int degerleri double olarak ifade edilir. Dikkat edilmesi gerekir yoksa hata verecektir.
+          }
+         */
+        HashMap<String,Object> reqBody = new HashMap<>();
+        reqBody.put("title","Ahmet");
+        reqBody.put("body","Merhaba");
+        reqBody.put("userId",10.0);
+        reqBody.put("id",70.0);
+
+        return reqBody;
+    }
 
 
 }

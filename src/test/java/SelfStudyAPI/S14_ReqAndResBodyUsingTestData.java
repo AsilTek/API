@@ -11,7 +11,7 @@ import utilities.SelfStudy_TestData_JsonPlace;
 
 import static io.restassured.RestAssured.given;
 
-public class S14_ extends SelfStudy_JsonPlaceHolderBaseUrl {
+public class S14_ReqAndResBodyUsingTestData extends SelfStudy_JsonPlaceHolderBaseUrl {
 
     @Test
     public void test01(){
