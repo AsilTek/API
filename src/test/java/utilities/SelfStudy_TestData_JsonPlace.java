@@ -68,5 +68,4 @@ public class SelfStudy_TestData_JsonPlace {
         return reqBody;
     }
 
-
 }
